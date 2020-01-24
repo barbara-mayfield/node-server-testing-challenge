@@ -1,9 +1,13 @@
 const express = require("express")
+const helmet = require("helmet")
+const spellsRouter = require("./spells/spells-router")
 
 const server = express()
 const port = process.env.PORT || 8000
 
+server.use(helmet())
 server.use(express.json())
+server.use("/spells", spellsRouter)
 
 server.get("/", (req, res) => {
     res.status(200).json({
@@ -20,7 +24,7 @@ server.use((err, req, res, next) => {
 
 if(!module.parent) {
     server.listen(port, () => {
-        console.log(`\n=> Server up at http://localhost:${port}\n`)
+        console.log(`\nServer up at [http://localhost:${port}]\n`)
     })
 }
 
