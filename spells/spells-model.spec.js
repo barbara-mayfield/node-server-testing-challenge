@@ -10,4 +10,9 @@ describe("spells model", () => {
         const res = await spellsModel.getSpells()
         expect(res).toHaveLength(4)
     })
+
+    test("findById", async () => {
+        const res = await spellsModel.findById(1)
+        expect(res.name).toBe("fireball")
+    })
 })
